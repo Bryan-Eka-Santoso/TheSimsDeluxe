@@ -341,18 +341,65 @@ public class App {
                                                         System.out.println("[x] - Exit View Map");
                                                         System.out.print(">> ");
                                                         inputPlay = scanS.nextLine();
-                                                        if(inputPlay.equals("w") && currentMap[ySim[selectControl-1]-1][xSim[selectControl-1]] == ' '){
+                                                        if(inputPlay.equals("w") && currentMap[ySim[selectControl-1]-1][xSim[selectControl-1]] != '=' && currentMap[ySim[selectControl-1]-1][xSim[selectControl-1]] != '|'){
                                                             currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
                                                             ySim[selectControl-1]--;
-                                                        } else if(inputPlay.equals("a") && currentMap[ySim[selectControl-1]][xSim[selectControl-1]-1] == ' '){
+                                                            if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                                int getFriends = 0;
+                                                                for(int i = 0; i < ySim.length; i++){
+                                                                    if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                        getFriends = i;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                listWillowCreek.get(selectControl-1).interact(listWillowCreek.get(getFriends));
+                                                                ySim[selectControl-1]++;
+                                                            }
+                                                        } else if(inputPlay.equals("a") && currentMap[ySim[selectControl-1]][xSim[selectControl-1]-1] != '=' && currentMap[ySim[selectControl-1]][xSim[selectControl-1]-1] != '|'){
                                                             currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
                                                             xSim[selectControl-1]--;
-                                                        } else if(inputPlay.equals("s") && currentMap[ySim[selectControl-1]+1][xSim[selectControl-1]] == ' '){
+                                                            if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                                int getFriends = 0;
+                                                                for(int i = 0; i < ySim.length; i++){
+                                                                    if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                        getFriends = i;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                int getPoint = 10;
+                                                                listWillowCreek.get(selectControl-1).interact(listWillowCreek.get(getFriends));
+                                                                xSim[selectControl-1]++;
+                                                            }
+                                                        } else if(inputPlay.equals("s") && currentMap[ySim[selectControl-1]+1][xSim[selectControl-1]] != '=' && currentMap[ySim[selectControl-1]+1][xSim[selectControl-1]] != '|'){
                                                             currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
                                                             ySim[selectControl-1]++;
-                                                        } else if(inputPlay.equals("d") && currentMap[ySim[selectControl-1]][xSim[selectControl-1]+1] == ' '){
+                                                            if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                                int getFriends = 0;
+                                                                for(int i = 0; i < ySim.length; i++){
+                                                                    if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                        getFriends = i;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                int getPoint = 10;
+                                                                listWillowCreek.get(selectControl-1).interact(listWillowCreek.get(getFriends));
+                                                                ySim[selectControl-1]--;
+                                                            }
+                                                        } else if(inputPlay.equals("d") && currentMap[ySim[selectControl-1]][xSim[selectControl-1]+1] != '=' && currentMap[ySim[selectControl-1]][xSim[selectControl-1]+1] != '|'){
                                                             currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
                                                             xSim[selectControl-1]++;
+                                                            if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                                int getFriends = 0;
+                                                                for(int i = 0; i < ySim.length; i++){
+                                                                    if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                        getFriends = i;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                int getPoint = 10;
+                                                                listWillowCreek.get(selectControl-1).interact(listWillowCreek.get(getFriends));
+                                                                xSim[selectControl-1]--;
+                                                            }
                                                         } else if(inputPlay.equals("e")){
                                                             listWillowCreek.get(selectControl-1).eat();
                                                         } else if(inputPlay.equals("l")){
@@ -388,16 +435,6 @@ public class App {
                                                 default:
                                                     break;
                                             }
-                                            switch (menuWillow) {
-                                                case 1:
-                                                    // 
-                                                    break;
-                                                case 2:
-                                                    // 
-                                                    break;
-                                                default:
-                                                    break;
-                                            }
                                             } while (menuWillow != 0);
                                         break;
                                     case 2:
@@ -428,14 +465,180 @@ public class App {
 
                                         switch (menuOasis) {
                                             case 1:
-                                                // 
+                                                int selectViewDetails;
+                                                System.out.println("Select a Sim to View Details: ");
+                                                for(int i = 0; i < listOasisSprings.size(); i++){
+                                                    System.out.println((i + 1) + ". " + listOasisSprings.get(i).name);
+                                                }
+                                                do {                                                        
+                                                    System.out.print(">> ");
+                                                    selectViewDetails = scanI.nextInt();
+                                                } while (selectViewDetails < 1 || selectViewDetails > listOasisSprings.size());
+                                                System.out.println("+=====================+");
+                                                System.out.println("Name: " + listOasisSprings.get(selectViewDetails-1).name);
+                                                System.out.println("Type: " + listOasisSprings.get(selectViewDetails-1).jenis);
+                                                System.out.println("+---------------------+");
+                                                System.out.println("Energy: " + listOasisSprings.get(selectViewDetails-1).energy);
+                                                System.out.println("Hunger: " + listOasisSprings.get(selectViewDetails-1).hunger);
+                                                System.out.println("Mood: " + listOasisSprings.get(selectViewDetails-1).mood);
+                                                System.out.println("+---------------------+");
+                                                System.out.println("Skills: ");
+                                                listOasisSprings.get(selectViewDetails-1).viewSkills();
+                                                System.out.println("+---------------------+");
+                                                System.out.println("Friends: ");
+                                                listOasisSprings.get(selectViewDetails-1).viewFriends();
+                                                System.out.println("+=====================+");
                                                 break;
                                             case 2:
-                                                // 
+                                                int selectControl;
+                                                int[] ySim = new int[listOasisSprings.size()];
+                                                int[] xSim = new int[listOasisSprings.size()];                                                    
+                                                System.out.println("Select a Sim to control: ");
+                                                for(int i = 0; i < listOasisSprings.size(); i++){
+                                                    System.out.println((i + 1) + ". " + listOasisSprings.get(i).name);
+                                                }
+                                                do {                                                        
+                                                    System.out.print(">> ");
+                                                    selectControl = scanI.nextInt();
+                                                } while (selectControl < 1 || selectControl > listOasisSprings.size());
+                                                char[][] currentMap = new char[7][15];
+                                                for(int i = 0; i < mapSim.length; i++){
+                                                    for(int j = 0; j < mapSim[0].length; j++){
+                                                        currentMap[i][j] = mapSim[i][j];
+                                                    }
+                                                }
+                                                String inputPlay;
+                                                for(int i = 0; i < listOasisSprings.size(); i++){
+                                                    int randY, randX;
+                                                    Boolean isKosong = false;
+                                                    do {
+                                                        randY = rand.nextInt(5) + 1;
+                                                        randX = rand.nextInt(13) + 1;
+                                        
+                                                        if(currentMap[randY][randX] == ' '){
+                                                            isKosong = true;
+                                                        }
+                                                    } while (!isKosong);
+                                                    ySim[i] = randY;
+                                                    xSim[i] = randX;
+                                                    currentMap[ySim[i]][xSim[i]] = '.';
+                                                }
+                                                do {
+                                                    for(int i = 0; i < listOasisSprings.size(); i++){
+                                                        currentMap[ySim[i]][xSim[i]] = listOasisSprings.get(i).name.charAt(0);
+                                                    }
+                                                    for(int i = 0; i < currentMap.length; i++){
+                                                        for(int j = 0; j < currentMap[0].length; j++){
+                                                            System.out.print(currentMap[i][j]);
+                                                        }
+                                                        System.out.println();
+                                                    }
+                                                    System.out.println("Moving " + listOasisSprings.get(selectControl-1).name + "...");
+                                                    System.out.println("[wasd] - Move Sim");
+                                                    System.out.println("[e] - Eat");
+                                                    System.out.println("[l] - Sleep");
+                                                    System.out.println("[i] - Learn New Skill");
+                                                    if(listOasisSprings.get(selectControl-1) instanceof VampireSim){
+                                                        System.out.println("[r] - Drink Blood");
+                                                    }
+                                                    System.out.println("[x] - Exit View Map");
+                                                    System.out.print(">> ");
+                                                    inputPlay = scanS.nextLine();
+                                                    if(inputPlay.equals("w") && currentMap[ySim[selectControl-1]-1][xSim[selectControl-1]] != '=' && currentMap[ySim[selectControl-1]-1][xSim[selectControl-1]] != '|'){
+                                                        currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
+                                                        ySim[selectControl-1]--;
+                                                        if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                            int getFriends = 0;
+                                                            for(int i = 0; i < ySim.length; i++){
+                                                                if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            listOasisSprings.get(selectControl-1).interact(listOasisSprings.get(getFriends));
+                                                            ySim[selectControl-1]++;
+                                                        }
+                                                    } else if(inputPlay.equals("a") && currentMap[ySim[selectControl-1]][xSim[selectControl-1]-1] != '=' && currentMap[ySim[selectControl-1]][xSim[selectControl-1]-1] != '|'){
+                                                        currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
+                                                        xSim[selectControl-1]--;
+                                                        if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                            int getFriends = 0;
+                                                            for(int i = 0; i < ySim.length; i++){
+                                                                if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            int getPoint = 10;
+                                                            listOasisSprings.get(selectControl-1).interact(listOasisSprings.get(getFriends));
+                                                            xSim[selectControl-1]++;
+                                                        }
+                                                    } else if(inputPlay.equals("s") && currentMap[ySim[selectControl-1]+1][xSim[selectControl-1]] != '=' && currentMap[ySim[selectControl-1]+1][xSim[selectControl-1]] != '|'){
+                                                        currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
+                                                        ySim[selectControl-1]++;
+                                                        if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                            int getFriends = 0;
+                                                            for(int i = 0; i < ySim.length; i++){
+                                                                if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            int getPoint = 10;
+                                                            listOasisSprings.get(selectControl-1).interact(listOasisSprings.get(getFriends));
+                                                            ySim[selectControl-1]--;
+                                                        }
+                                                    } else if(inputPlay.equals("d") && currentMap[ySim[selectControl-1]][xSim[selectControl-1]+1] != '=' && currentMap[ySim[selectControl-1]][xSim[selectControl-1]+1] != '|'){
+                                                        currentMap[ySim[selectControl-1]][xSim[selectControl-1]] = ' ';
+                                                        xSim[selectControl-1]++;
+                                                        if(currentMap[ySim[selectControl-1]][xSim[selectControl-1]] != ' '){
+                                                            int getFriends = 0;
+                                                            for(int i = 0; i < ySim.length; i++){
+                                                                if(i != selectControl-1 && ySim[selectControl-1] == ySim[i] && xSim[selectControl-1] == xSim[i]){
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            int getPoint = 10;
+                                                            listOasisSprings.get(selectControl-1).interact(listOasisSprings.get(getFriends));
+                                                            xSim[selectControl-1]--;
+                                                        }
+                                                    } else if(inputPlay.equals("e")){
+                                                        listOasisSprings.get(selectControl-1).eat();
+                                                    } else if(inputPlay.equals("l")){
+                                                        listOasisSprings.get(selectControl-1).sleep();
+                                                    } else if(inputPlay.equals("i")){
+                                                        int chooseSkill;
+                                                        System.out.println("Choose a skill to enhance: ");
+                                                        System.out.println("1. Cooking Skill");
+                                                        System.out.println("2. Logic Skill");
+                                                        System.out.println("3. Charisma Skill");
+                                                        do {                                                                
+                                                            System.out.print(">> ");
+                                                            chooseSkill = scanI.nextInt();
+                                                        } while (chooseSkill < 1 || chooseSkill > 3);
+                                                        switch (chooseSkill) {
+                                                            case 1:
+                                                                listOasisSprings.get(selectControl-1).cooking();
+                                                                break;
+                                                            case 2:
+                                                                listOasisSprings.get(selectControl-1).logic();
+                                                                break;
+                                                            case 3:
+                                                                listOasisSprings.get(selectControl-1).charisma();
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
+                                                    } else if(listOasisSprings.get(selectControl-1) instanceof VampireSim && inputPlay.equals("r")){
+                                                        ((VampireSim) listOasisSprings.get(selectControl-1)).drink();
+                                                    }
+                                                } while (!inputPlay.equals("x"));
                                                 break;
                                             default:
                                                 break;
                                         }
+                                        
                                         } while (menuOasis != 0);
                                         break;
                                     case 3:
@@ -465,14 +668,200 @@ public class App {
 
                                         switch (menuNewcrest) {
                                             case 1:
-                                                // 
+                                                int selectViewDetails;
+                                                System.out.println("Select a Sim to View Details: ");
+                                                for (int i = 0; i < listNewcrest.size(); i++) {
+                                                    System.out.println((i + 1) + ". " + listNewcrest.get(i).name);
+                                                }
+                                                do {
+                                                    System.out.print(">> ");
+                                                    selectViewDetails = scanI.nextInt();
+                                                } while (selectViewDetails < 1 || selectViewDetails > listNewcrest.size());
+                                                System.out.println("+=====================+");
+                                                System.out.println("Name: " + listNewcrest.get(selectViewDetails - 1).name);
+                                                System.out.println("Type: " + listNewcrest.get(selectViewDetails - 1).jenis);
+                                                System.out.println("+---------------------+");
+                                                System.out.println("Energy: " + listNewcrest.get(selectViewDetails - 1).energy);
+                                                System.out.println("Hunger: " + listNewcrest.get(selectViewDetails - 1).hunger);
+                                                System.out.println("Mood: " + listNewcrest.get(selectViewDetails - 1).mood);
+                                                System.out.println("+---------------------+");
+                                                System.out.println("Skills: ");
+                                                listNewcrest.get(selectViewDetails - 1).viewSkills();
+                                                System.out.println("+---------------------+");
+                                                System.out.println("Friends: ");
+                                                listNewcrest.get(selectViewDetails - 1).viewFriends();
+                                                System.out.println("+=====================+");
                                                 break;
+                                        
                                             case 2:
-                                                // 
+                                                int selectControl;
+                                                int[] ySim = new int[listNewcrest.size()];
+                                                int[] xSim = new int[listNewcrest.size()];
+                                                System.out.println("Select a Sim to control: ");
+                                                for (int i = 0; i < listNewcrest.size(); i++) {
+                                                    System.out.println((i + 1) + ". " + listNewcrest.get(i).name);
+                                                }
+                                                do {
+                                                    System.out.print(">> ");
+                                                    selectControl = scanI.nextInt();
+                                                } while (selectControl < 1 || selectControl > listNewcrest.size());
+                                        
+                                                char[][] currentMap = new char[7][15];
+                                                for (int i = 0; i < mapSim.length; i++) {
+                                                    for (int j = 0; j < mapSim[0].length; j++) {
+                                                        currentMap[i][j] = mapSim[i][j];
+                                                    }
+                                                }
+                                        
+                                                String inputPlay;
+                                                for (int i = 0; i < listNewcrest.size(); i++) {
+                                                    int randY, randX;
+                                                    boolean isKosong = false;
+                                                    do {
+                                                        randY = rand.nextInt(5) + 1;
+                                                        randX = rand.nextInt(13) + 1;
+                                        
+                                                        if (currentMap[randY][randX] == ' ') {
+                                                            isKosong = true;
+                                                        }
+                                                    } while (!isKosong);
+                                                    ySim[i] = randY;
+                                                    xSim[i] = randX;
+                                                    currentMap[ySim[i]][xSim[i]] = '.';
+                                                }
+                                        
+                                                do {
+                                                    for (int i = 0; i < listNewcrest.size(); i++) {
+                                                        currentMap[ySim[i]][xSim[i]] = listNewcrest.get(i).name.charAt(0);
+                                                    }
+                                        
+                                                    for (int i = 0; i < currentMap.length; i++) {
+                                                        for (int j = 0; j < currentMap[0].length; j++) {
+                                                            System.out.print(currentMap[i][j]);
+                                                        }
+                                                        System.out.println();
+                                                    }
+                                        
+                                                    System.out.println("Moving " + listNewcrest.get(selectControl - 1).name + "...");
+                                                    System.out.println("[wasd] - Move Sim");
+                                                    System.out.println("[e] - Eat");
+                                                    System.out.println("[l] - Sleep");
+                                                    System.out.println("[i] - Learn New Skill");
+                                                    if (listNewcrest.get(selectControl - 1) instanceof VampireSim) {
+                                                        System.out.println("[r] - Drink Blood");
+                                                    }
+                                                    System.out.println("[x] - Exit View Map");
+                                                    System.out.print(">> ");
+                                                    inputPlay = scanS.nextLine();
+                                        
+                                                    if (inputPlay.equals("w") && currentMap[ySim[selectControl - 1] - 1][xSim[selectControl - 1]] != '=' &&
+                                                            currentMap[ySim[selectControl - 1] - 1][xSim[selectControl - 1]] != '|') {
+                                                        currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] = ' ';
+                                                        ySim[selectControl - 1]--;
+                                                        if (currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] != ' ') {
+                                                            int getFriends = 0;
+                                                            for (int i = 0; i < ySim.length; i++) {
+                                                                if (i != selectControl - 1 &&
+                                                                        ySim[selectControl - 1] == ySim[i] && xSim[selectControl - 1] == xSim[i]) {
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            listNewcrest.get(selectControl - 1).interact(listNewcrest.get(getFriends));
+                                                            ySim[selectControl - 1]++;
+                                                        }
+                                        
+                                                    } else if (inputPlay.equals("a") && currentMap[ySim[selectControl - 1]][xSim[selectControl - 1] - 1] != '=' &&
+                                                            currentMap[ySim[selectControl - 1]][xSim[selectControl - 1] - 1] != '|') {
+                                                        currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] = ' ';
+                                                        xSim[selectControl - 1]--;
+                                                        if (currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] != ' ') {
+                                                            int getFriends = 0;
+                                                            for (int i = 0; i < ySim.length; i++) {
+                                                                if (i != selectControl - 1 &&
+                                                                        ySim[selectControl - 1] == ySim[i] && xSim[selectControl - 1] == xSim[i]) {
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            listNewcrest.get(selectControl - 1).interact(listNewcrest.get(getFriends));
+                                                            xSim[selectControl - 1]++;
+                                                        }
+                                        
+                                                    } else if (inputPlay.equals("s") && currentMap[ySim[selectControl - 1] + 1][xSim[selectControl - 1]] != '=' &&
+                                                            currentMap[ySim[selectControl - 1] + 1][xSim[selectControl - 1]] != '|') {
+                                                        currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] = ' ';
+                                                        ySim[selectControl - 1]++;
+                                                        if (currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] != ' ') {
+                                                            int getFriends = 0;
+                                                            for (int i = 0; i < ySim.length; i++) {
+                                                                if (i != selectControl - 1 &&
+                                                                        ySim[selectControl - 1] == ySim[i] && xSim[selectControl - 1] == xSim[i]) {
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            listNewcrest.get(selectControl - 1).interact(listNewcrest.get(getFriends));
+                                                            ySim[selectControl - 1]--;
+                                                        }
+                                        
+                                                    } else if (inputPlay.equals("d") && currentMap[ySim[selectControl - 1]][xSim[selectControl - 1] + 1] != '=' &&
+                                                            currentMap[ySim[selectControl - 1]][xSim[selectControl - 1] + 1] != '|') {
+                                                        currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] = ' ';
+                                                        xSim[selectControl - 1]++;
+                                                        if (currentMap[ySim[selectControl - 1]][xSim[selectControl - 1]] != ' ') {
+                                                            int getFriends = 0;
+                                                            for (int i = 0; i < ySim.length; i++) {
+                                                                if (i != selectControl - 1 &&
+                                                                        ySim[selectControl - 1] == ySim[i] && xSim[selectControl - 1] == xSim[i]) {
+                                                                    getFriends = i;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            listNewcrest.get(selectControl - 1).interact(listNewcrest.get(getFriends));
+                                                            xSim[selectControl - 1]--;
+                                                        }
+                                        
+                                                    } else if (inputPlay.equals("e")) {
+                                                        listNewcrest.get(selectControl - 1).eat();
+                                        
+                                                    } else if (inputPlay.equals("l")) {
+                                                        listNewcrest.get(selectControl - 1).sleep();
+                                        
+                                                    } else if (inputPlay.equals("i")) {
+                                                        int chooseSkill;
+                                                        System.out.println("Choose a skill to enhance: ");
+                                                        System.out.println("1. Cooking Skill");
+                                                        System.out.println("2. Logic Skill");
+                                                        System.out.println("3. Charisma Skill");
+                                                        do {
+                                                            System.out.print(">> ");
+                                                            chooseSkill = scanI.nextInt();
+                                                        } while (chooseSkill < 1 || chooseSkill > 3);
+                                                        switch (chooseSkill) {
+                                                            case 1:
+                                                                listNewcrest.get(selectControl - 1).cooking();
+                                                                break;
+                                                            case 2:
+                                                                listNewcrest.get(selectControl - 1).logic();
+                                                                break;
+                                                            case 3:
+                                                                listNewcrest.get(selectControl - 1).charisma();
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
+                                        
+                                                    } else if (listNewcrest.get(selectControl - 1) instanceof VampireSim && inputPlay.equals("r")) {
+                                                        ((VampireSim) listNewcrest.get(selectControl - 1)).drink();
+                                                    }
+                                        
+                                                } while (!inputPlay.equals("x"));
                                                 break;
+                                        
                                             default:
                                                 break;
-                                        }
+                                        }                                        
                                         } while (menuNewcrest != 0);
                                         break;
                                     default:
