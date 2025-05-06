@@ -34,7 +34,7 @@ public class AlienSim extends Sim {
             minEnergyThis = 10;
         }
         if(this.energy - minEnergyThis < 0 || sim.energy - minEnergySim < 0){
-            System.out.println("Failed interact.");
+            System.out.println("Failed interact. Energy is not enough!");
         } else {
             int thisFriendship = this.friends.listFriends.indexOf(sim);
             int simFriendship = sim.friends.listFriends.indexOf(this);

@@ -23,7 +23,7 @@ public class HumanSim extends Sim {
             minEnergy = 20;
         }
         if(this.energy - 20 < 0 && sim.energy - minEnergy < 0){
-            System.out.println("Failed interact.");
+            System.out.println("Failed interact. Energy is not enough!");
         } else {
             int thisFriendship = this.friends.listFriends.indexOf(sim);
             int simFriendship = sim.friends.listFriends.indexOf(this);

@@ -19,7 +19,7 @@ public class VampireSim extends Sim {
     @Override
     public void interact(Sim sim){
         if(this.energy - 20 < 0 && sim.energy - 20 < 0){
-            System.out.println("Failed interact.");
+            System.out.println("Failed interact. Energy is not enough!");
         } else {
             int thisFriendship = this.friends.listFriends.indexOf(sim);
             int simFriendship = sim.friends.listFriends.indexOf(this);
